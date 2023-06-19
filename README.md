@@ -6,7 +6,8 @@ Robbo
 An accurate reimplementation of classic **Robbo** game in *TypeScript*,
 playable in browsers as old as Firefox 28, so suitable even for
 smartphones from >= 2014. Supported input devices are: keyboard,
-touch screen, game pad.
+touch screen, game pad. Graphics is rendered on 2D canvas.
+Sound effects are produced by emulating POKEY chip.
 
 The original game was created by Janusz Pelc and published by LK Avalon
 in 1989 for 8-bit Atari.
