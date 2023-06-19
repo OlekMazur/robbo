@@ -1,0 +1,25 @@
+{
+	"warnings": true,
+	"toplevel": true,
+	"compress": {
+		"passes": 2,
+		"toplevel": true,
+		"keep_fargs": false,
+		"pure_getters": true,
+		"hoist_funs": true,
+		"unsafe": true,
+		"unsafe_math": true,
+		"unsafe_arrows": true,
+		"unsafe_comps": true,
+		"unsafe_methods": true,
+		"unsafe_proto": true,
+		"unsafe_undefined": true
+	},
+	"mangle": {
+		"toplevel": true
+	},
+	"output": {
+		"semicolons": false,
+		"comments": false
+	}
+}

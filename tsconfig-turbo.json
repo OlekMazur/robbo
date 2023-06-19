@@ -1,0 +1,17 @@
+{
+	"compilerOptions": {
+		"target": "esnext",
+		"module": "amd",
+		"moduleResolution": "node",
+		"strict": true,
+		"alwaysStrict": true,
+		"strictNullChecks": true,
+		"sourceMap": false,
+		"incremental": true,
+		"tsBuildInfoFile": "output/tsc/.tsbuildinfo"
+	},
+	"include": [
+		"src/*.ts",
+		"src/turbo/*.ts"
+	]
+}

@@ -1,0 +1,33 @@
+name: Build
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+    - name: Setup node
+      uses: actions/setup-node@v3
+      with:
+        node-version: 16
+        cache: 'npm'
+    - name: Install dependencies
+      run: npm ci
+    - name: Lint
+      run: make lint
+    - name: Build
+      run: make
+    - name: Prepare artifact
+      run: |
+        tar cvf output.tar -C output .
+    - name: Upload artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: iDom-fe
+        path: build.tar

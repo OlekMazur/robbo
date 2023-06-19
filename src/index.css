@@ -1,0 +1,91 @@
+/*
+ * This file is part of Robbo.
+ *
+ * Copyright (c) 2023 Aleksander Mazur
+ *
+ * Robbo is free software: you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ *
+ * Robbo is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Robbo. If not, see <https://www.gnu.org/licenses/>.
+ */
+
+html, body {
+	width: 100%;
+	height: 100%;
+	display: table;
+}
+
+html, body, div {
+	padding: 0;
+	margin: 0;
+}
+
+#main {
+	display: table-cell;
+	vertical-align: middle;
+	z-index: 1;
+}
+
+#canvas {
+	width: 288px;
+	height: 192px;
+	image-rendering: pixelated;
+	image-rendering: -moz-crisp-edges;
+	image-rendering: -webkit-optimize-contrast;
+	image-rendering: -o-crisp-edges;
+}
+
+@media (min-width: 580px) and (min-height: 388px) {
+	#canvas {
+		width: 576px;
+		height: 384px;
+	}
+}
+
+@media (min-width: 868px) and (min-height: 580px) {
+	#canvas {
+		width: 864px;
+		height: 576px;
+	}
+}
+
+@media (min-width: 1156px) and (min-height: 772px) {
+	#canvas {
+		width: 1152px;
+		height: 768px;
+	}
+}
+
+a, a:visited, a:hover {
+	color: black;
+}
+
+.menu-cnt {
+	position: absolute;
+	margin: 0;
+	padding: 0.5em;
+	border-radius: 0 0 0.5em 0;
+	background-color: rgba(255, 255, 255, 0.9);
+	z-index: 100;
+}
+
+.menu-btn {
+	font-weight: bold;
+}
+
+.fade {
+	opacity: 1;
+	transition: opacity 0.5s linear;
+}
+
+.fade-out {
+	opacity: 0;
+}

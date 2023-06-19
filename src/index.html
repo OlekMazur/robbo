@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="Content-Language" content="pl">
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+	<title>Robbo</title>
+	<link rel="stylesheet" href="index.css">
+	<style>
+html, body {
+	font-family: "Lucida Console", Monaco, monospace;
+	background-color: black;
+	color: white;
+}
+
+.center {
+	text-align: center;
+}
+
+.hidden {
+	display: none;
+}
+
+p {
+	padding: 2px;
+}
+	</style>
+</head>
+<body>
+	<noscript class="center"><p><strong>Aplikacja nie działa bez JavaScript</strong></p></noscript>
+	<div id="menu" class="menu-cnt fade fade-out" title="Pełny ekran">
+		<a href="#" id="fs" class="menu-btn" role="button">&square;</a>
+	</div>
+	<div id="main" class="center">
+		<p id="info">R o b b o</p>
+		<canvas id="canvas" class="center hidden" width="288" height="192">
+			<p>Twoja przeglądarka nie dostarcza płótna</p>
+		</canvas>
+	</div>
+	<script defer src="index.js"></script>
+</body>
+</html>
