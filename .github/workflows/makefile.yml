@@ -22,12 +22,12 @@ jobs:
     - name: Lint
       run: make lint
     - name: Build
-      run: make
+      run: make all
     - name: Prepare artifact
       run: |
         tar cvf output.tar -C output .
     - name: Upload artifact
       uses: actions/upload-artifact@v3
       with:
-        name: iDom-fe
-        path: build.tar
+        name: robbo
+        path: output.tar
