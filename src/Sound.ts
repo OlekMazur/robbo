@@ -40,7 +40,8 @@ interface SoundInfo {
 class Sound {
 	private static readonly FREQ_BASE = 1773447 / 28	// 64 kHz
 	private static readonly poly17 = new Uint8Array(16385)
-	private readonly ctx = new AudioContext()
+	private static readonly ctx = new AudioContext()
+	private static readonly dest = Sound.ctx.destination
 	private readonly sounds: SoundInfo[] = []
 	private readonly playing: (AudioBufferSourceNode | undefined)[] = []	// indeksowane przez sounds[X].generator
 	private poly_start = 0
@@ -64,7 +65,7 @@ class Sound {
 	 */
 	private generatePOKEY(prepared: AudioBuffer, duration: number, tones: number[]): boolean {
 		let result = false
-		const sr = this.ctx.sampleRate
+		const sr = Sound.ctx.sampleRate
 		const frame1 = Math.floor(sr * duration)
 		const samples = prepared.getChannelData(0)
 		let vb = true	// false / true
@@ -131,9 +132,9 @@ class Sound {
 	 */
 	public preparePOKEY(generator: number, duration: number, tones: number[], regenerate = true): number {
 		const rv = this.sounds.length
-		const sr = this.ctx.sampleRate
+		const sr = Sound.ctx.sampleRate
 		const frame1 = Math.floor(sr * duration)
-		const prepared = this.ctx.createBuffer(1, tones.length * frame1, sr)
+		const prepared = Sound.ctx.createBuffer(1, tones.length * frame1, sr)
 		if (!this.generatePOKEY(prepared, duration, tones))
 			regenerate = false
 		this.sounds.push({
@@ -177,8 +178,8 @@ class Sound {
 	 */
 	public prepareGTIA(generator: number, bits: number, data: number[]): number {
 		const rv = this.sounds.length
-		const sr = this.ctx.sampleRate
-		const prepared = this.ctx.createBuffer(1, bits, sr)
+		const sr = Sound.ctx.sampleRate
+		const prepared = Sound.ctx.createBuffer(1, bits, sr)
 		const samples = prepared.getChannelData(0)
 		for (let i = 0, word = 0; i < bits; i++, word >>= 1) {
 			if (!(i & 31))
@@ -216,9 +217,9 @@ class Sound {
 		if (buf) {
 			if (sound.used && sound.regenerate)
 				sound.regenerate = this.generatePOKEY(sound.prepared, sound.duration, sound.tones)
-			const bs = this.ctx.createBufferSource()
+			const bs = Sound.ctx.createBufferSource()
 			bs.buffer = buf
-			bs.connect(this.ctx.destination)
+			bs.connect(Sound.dest)
 			bs.start()
 			sound.used = true
 			if (sound.generator >= 0)
