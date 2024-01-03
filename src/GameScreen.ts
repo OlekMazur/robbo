@@ -636,7 +636,7 @@ class GameScreen extends BaseScreen {
 			for (const delta of [-ROW -1, -ROW, -ROW +1, -1, 0, +1, +ROW -1, +ROW, +ROW +1]) {
 				const tile = epi + delta
 				let elem = this.cave[tile]
-				if (elem != ElementCode.WALL && (!delta || this.element[elem]?.blowable)) {
+				if (elem != ElementCode.WALL && (!delta || this.getElementInfo(elem)?.blowable)) {
 					if (elem == ElementCode.BOMB) {	// wybucha sąsiednia bomba
 						elem = ElementCode.ANIM_BOMB | 0x80
 					} else if (!delta) {	// w środku
@@ -660,8 +660,8 @@ class GameScreen extends BaseScreen {
 					elem = this.cave[pos] & 0x7F
 					if (elem == ElementCode.MAGNET_LT || elem == ElementCode.MAGNET_RT) {	// ( )
 						elem = ElementCode.WALL
-					} else if (elem == ElementCode.DOOR_H || elem == ElementCode.DOOR_V ||
-						(elem >= ElementCode.CREATURE_LH_UP && elem <= ElementCode.CREATURE_HV_DN)) {	// | ^R A-L
+					} else if (elem == ElementCode.DOOR_H || elem == ElementCode.DOOR_V || elem == ElementCode.EYES ||
+						(elem >= ElementCode.CREATURE_LH_UP && elem <= ElementCode.CREATURE_HV_DN)) {	// | ^R & A-L
 						elem = ElementCode.ANIM_DISAPPEAR_A
 					} else {
 						continue
@@ -1175,10 +1175,12 @@ class GameScreen extends BaseScreen {
 			}
 			this.sound.play(SoundCode.SCREW)
 		} else if (there == ElementCode.SHIP_ACTIVE || there == ElementCode.SHIP_ACTIVE_ALT) {
-			elem = there	// na planszy pozostaje migający statek
 			this.infoState.score += 1000
 			this.sound.play(SoundCode.LEAVE)
+			this.cave[from] = ElementCode.SPACE
+			this.setPlayerPos(tile)
 			this.setPhase(GamePhase.LEAVE_CAVE)
+			return true	// !!!
 		} else if (there == ElementCode.AMMO) {
 			if ((this.infoState.ammo += 9) > 99)
 				this.infoState.ammo = 99
