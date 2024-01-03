@@ -31,7 +31,7 @@ abstract class BaseScreen {
 	 * Inicjalizuje ekran.
 	 */
 	constructor(protected readonly canvas: HTMLCanvasElement, protected readonly palette: Palette, protected readonly font: Font) {
-		this.left = (canvas.width - TitleScreen.LINE_WIDTH) / 2
+		this.left = Math.floor((canvas.width - BaseScreen.LINE_WIDTH) / 2)
 		this.ctx = canvas.getContext('2d') as CanvasRenderingContext2D
 	}
 
