@@ -116,7 +116,7 @@ const main = (bin: ArrayBuffer) => {
 onload = () => {
 	try {
 		loadBin('index.bin', main)
-	} catch (e: any) {
+	} catch (e: any) {// eslint-disable-line @typescript-eslint/no-explicit-any
 		const elem = document.getElementById('info')
 
 		if (elem)

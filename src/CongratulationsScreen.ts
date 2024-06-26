@@ -40,7 +40,7 @@ abstract class ScenarioPhase {
 	 *
 	 * @param bg Zachowane tło obrazka.
 	 */
-	public updateBg(bg: ImageData): void {
+	public updateBg(bg: ImageData): void {// eslint-disable-line @typescript-eslint/no-unused-vars
 		// klasa potomna może, ale nie musi czegoś tutaj robić
 	}
 
@@ -52,7 +52,7 @@ abstract class ScenarioPhase {
 	 * @param order Numer kolejny operacji w ramach fazy.
 	 * Większy niż zero oznacza, że coś innego mogło zarysować obraz.
 	 */
-	public updateFg(order: number): void {
+	public updateFg(order: number): void {// eslint-disable-line @typescript-eslint/no-unused-vars
 		// klasa potomna może, ale nie musi czegoś tutaj robić
 	}
 

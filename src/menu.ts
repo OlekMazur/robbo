@@ -18,7 +18,7 @@
  */
 
 function isFullscreen(): boolean {
-	const doc: any = document
+	const doc: any = document	// eslint-disable-line @typescript-eslint/no-explicit-any
 	for (const f of ['fullscreenElement', 'webkitFullscreenElement', 'msFullscreenElement', 'mozFullScreenElement'])
 		if (doc[f])
 			return true
@@ -26,7 +26,7 @@ function isFullscreen(): boolean {
 }
 
 function requestFullscreen() {
-	const body: any = document.body
+	const body: any = document.body	// eslint-disable-line @typescript-eslint/no-explicit-any
 	for (const f of ['requestFullscreen', 'webkitRequestFullscreen', 'msRequestFullscreen', 'mozRequestFullScreen'])
 		if (body[f]) {
 			body[f]()
