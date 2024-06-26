@@ -11,11 +11,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
+    - name: Setup pages
+      id: pages
+      uses: actions/configure-pages@v5
     - name: Setup node
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v4
       with:
-        node-version: 16
+        node-version: 20
         cache: 'npm'
     - name: Install dependencies
       run: npm ci
@@ -23,11 +26,28 @@ jobs:
       run: make lint
     - name: Build
       run: make all
-    - name: Prepare artifact
+    - name: Prepare artifacts
       run: |
         tar cvf output.tar -C output .
+        cp -dp output/index.* _site
     - name: Upload artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: robbo
         path: output.tar
+    - name: Upload pages artifact
+      uses: actions/upload-pages-artifact@v3
+
+  deploy:
+    needs: build
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+    - name: Deploy
+      id: deployment
+      uses: actions/deploy-pages@v4
