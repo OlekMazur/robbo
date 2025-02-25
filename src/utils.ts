@@ -24,7 +24,7 @@ function storageLoadStr(name: string, defaultValue = ''): string {
 		const value = localStorage.getItem(name)
 		if (typeof value === 'string')
 			return value
-	} catch (e) {
+	} catch (_e) {
 	}
 	return defaultValue
 }
@@ -32,7 +32,7 @@ function storageLoadStr(name: string, defaultValue = ''): string {
 function storageSaveStr(name: string, value: string): void {
 	try {
 		localStorage.setItem(name, value)
-	} catch (e) {
+	} catch (_e) {
 	}
 }
 
@@ -52,7 +52,7 @@ function storageSaveNumber(name: string, value: number): void {
 function storageDelete(name: string): void {
 	try {
 		localStorage.removeItem(name)
-	} catch (e) {
+	} catch (_e) {
 	}
 }
 
